@@ -53,21 +53,7 @@
 						
 			</div>
 		
-		 <ion-scroll direction="x" style="width: 100%" scrollbar-x="false" delegate-handle="head" zooming="true" on-scroll="scrollMirror('head', 'list')">
-         <div class="item item-header item-positive row row-item ch-in-width-area">
-          <div class="col col-center ch-in-slno" >First Name</div>
-           <div class="col col-center ch-in-slno" >Last Name</div>
-             
-	  
-        </div>
-      </ion-scroll>
-	  
-	  	  <ion-scroll direction="xy" style="height: 100%" zooming="true" on-scroll="scrollMirror('list', 'head')" delegate-handle="list"  >
-        <div class="item row row-item ch-in-width-area" ng-repeat="x in list" ng-class-odd="'odd'" ng-class-even="'even'">
-          <div class="col col-center col-sep  ch-in-slno">{{x.first_name}}</div>
-          <div class="col col-center col-sep  ch-in-slno">{{x.last_name}}</div>
-          
-        </div>	
+		
           		  		  
         </ion-content>
 		<div class="bar bar-footer">
