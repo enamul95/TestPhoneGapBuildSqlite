@@ -20,6 +20,7 @@ angular.module('starter', ['ionic','ngCordova'])
  $scope.submit = function(reg) {
 	alert(reg.first);
 	alert(reg.last);
+	alert("db :"+db);
 	
 	 db.transaction(function(tx) { 
 	tx.executeSql("INSERT INTO user(first_name,last_name) VALUES (?,?)", [reg.first,reg.last], function(tx, res) {
@@ -48,5 +49,6 @@ angular.module('starter', ['ionic','ngCordova'])
 	db.transaction(function(tx) {
 	 tx.executeSql('CREATE TABLE IF NOT EXISTS user(first_name text,last_name)');
 	})
+	alert("db :"+db);
   });
 })
