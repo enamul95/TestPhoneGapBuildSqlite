@@ -45,6 +45,11 @@ angular.module('starter', ['ionic','ngCordova'])
 	
 	db = window.sqlitePlugin.openDatabase({name: "DB"});
 	
+	db.transaction(function(tx) {
+	 tx.executeSql('CREATE TABLE IF NOT EXISTS user (first_name text,last_name)');
+	})
+	alert("db :"+db);
+	
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -52,9 +57,6 @@ angular.module('starter', ['ionic','ngCordova'])
       StatusBar.styleDefault();
     }
 	
-	db.transaction(function(tx) {
-	 tx.executeSql('CREATE TABLE IF NOT EXISTS user (first_name text,last_name)');
-	})
-	alert("db :"+db);
+
   });
 })
