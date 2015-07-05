@@ -16,7 +16,7 @@ angular.module('starter', ['ionic','ngCordova'])
         })   
     $urlRouterProvider.otherwise("/registration");
 })
-.controller('RegistrationClt', function($scope, $state, $rootScope,$ionicLoading,$ionicPopup, $timeout) {
+.controller('RegistrationClt', function($scope, $state, $rootScope,$ionicLoading,$ionicPopup, $timeout,,$cordovaSQLite) {
  $scope.submit = function(reg) {
 	alert(reg.first);
 	alert(reg.last);
