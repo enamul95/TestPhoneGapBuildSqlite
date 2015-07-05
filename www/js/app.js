@@ -19,14 +19,18 @@ angular.module('starter', ['ionic','ngCordova'])
 .controller('RegistrationClt', function($scope, $state, $rootScope,$ionicLoading,$ionicPopup, $timeout,$cordovaSQLite) {
  $scope.submit = function(reg) {
 	alert(reg.first);
-	alert(reg.last);
-	alert("db :"+db);
+//	alert(reg.last);
+	//alert("db :"+db);
 	
 	 db.transaction(function(tx) { 
-	tx.executeSql("INSERT INTO user(first_name,last_name) VALUES (?,?)", [reg.first,reg.last], function(tx, res) {
+	alert("inside");
+	tx.executeSql("INSERT INTO user (first_name,last_name) VALUES (?,?)", [reg.first,reg.last], function(tx, res) {
 	 alert("Insert successfully");
 	})
- })
+ }),
+ , function(e) {
+      alert("error");
+    });		
  }
 
 })
