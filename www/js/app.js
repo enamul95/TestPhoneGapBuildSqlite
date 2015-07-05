@@ -26,7 +26,7 @@ angular.module('starter', ['ionic','ngCordova'])
  
  db.transaction(function(tx) {  
  		alert("inside");
-           	tx.executeSql("INSERT INTO user (first_name,last_name) VALUES (?,?)", [reg.first,reg.last], function(tx, res) {
+           	tx.executeSql("INSERT INTO user (first_name,last_name) VALUES (?,?)", ["1","Branccc"], function(tx, res) { 
 				alert("Insert Successfully");
 			});
          }, function(e) {
@@ -53,7 +53,7 @@ angular.module('starter', ['ionic','ngCordova'])
     }
 	
 	db.transaction(function(tx) {
-	 tx.executeSql('CREATE TABLE IF NOT EXISTS user(first_name text,last_name)');
+	 tx.executeSql('CREATE TABLE IF NOT EXISTS user (first_name text,last_name)');
 	})
 	alert("db :"+db);
   });
