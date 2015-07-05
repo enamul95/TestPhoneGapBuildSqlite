@@ -17,33 +17,24 @@ angular.module('starter', ['ionic','ngCordova'])
     $urlRouterProvider.otherwise("/registration");
 })
 .controller('RegistrationClt', function($scope, $state, $rootScope,$ionicLoading,$ionicPopup, $timeout,$cordovaSQLite) {
- 	//Show begin
-		$rootScope.list = [];
-	 db.transaction(function(tx) {
-	 	tx.executeSql("SELECT * from user", [], function(tx, res) {
-	 	 var len = res.rows.length;
-                 if(len>0){
-                  for (var i = 0; i < len; i++) {
-                  	 $scope.list.push({
-                  	 	first_name: res.rows.item(i).first_name,
-                 		last_name: res.rows.item(i).last_name	
-                  	 });
-                  	  $scope.$apply();
-                  }
-                  
-                 }
-                
-	 	})
-	 })
- 
-	//Show data end
+ 	
  
  
  $scope.submit = function(reg) {
 	//alert(reg.first);
 //	alert(reg.last);
 	//alert("db :"+db);
-	
+if(!reg || ! reg.first){
+$ionicPopup.alert({
+		  title: 'Please Enter Your First Name',
+		  //template:'From date'
+		  })	
+}else if(!reg || ! reg.last){
+$ionicPopup.alert({
+		  title: 'Please Enter Your Last Name',
+		  //template:'From date'
+		  })	
+}else{
 
  
  db.transaction(function(tx) {  
@@ -75,7 +66,7 @@ angular.module('starter', ['ionic','ngCordova'])
        alert("Error");
     });
     
-    		
+ }		
  }
 
 })
