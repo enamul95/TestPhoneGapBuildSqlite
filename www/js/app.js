@@ -22,15 +22,17 @@ angular.module('starter', ['ionic','ngCordova'])
 //	alert(reg.last);
 	//alert("db :"+db);
 	
-	 db.transaction(function(tx) { 
-	alert("inside");
-	tx.executeSql("INSERT INTO user (first_name,last_name) VALUES (?,?)", [reg.first,reg.last], function(tx, res) {
-	 alert("Insert successfully");
-	})
- }),
- , function(e) {
-      alert("error");
-    });		
+
+ 
+ db.transaction(function(tx) {  
+ 		alert("inside");
+           	tx.executeSql("INSERT INTO user (first_name,last_name) VALUES (?,?)", [reg.first,reg.last], function(tx, res) {
+				alert("Insert Successfully");
+			});
+         }, function(e) {
+        console.log("ERROR:");
+    });
+ 
  }
 
 })
