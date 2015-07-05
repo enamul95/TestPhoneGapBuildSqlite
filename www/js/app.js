@@ -18,7 +18,7 @@ angular.module('starter', ['ionic','ngCordova'])
 })
 .controller('RegistrationClt', function($scope, $state, $rootScope,$ionicLoading,$ionicPopup, $timeout,$cordovaSQLite) {
  $scope.submit = function(reg) {
-	alert(reg.first);
+	//alert(reg.first);
 //	alert(reg.last);
 	//alert("db :"+db);
 	
@@ -26,7 +26,7 @@ angular.module('starter', ['ionic','ngCordova'])
  
  db.transaction(function(tx) {  
  		alert("inside");
-           	tx.executeSql("INSERT INTO user (first_name,last_name) VALUES (?,?)", ["1","Branccc"], function(tx, res) { 
+           	tx.executeSql("INSERT INTO user (first_name,last_name) VALUES (?,?)", [reg.first,reg.last], function(tx, res) { 
 				alert("Insert Successfully");
 				//Show
 					$rootScope.list = [];
@@ -69,7 +69,27 @@ angular.module('starter', ['ionic','ngCordova'])
 	db.transaction(function(tx) {
 	 tx.executeSql('CREATE TABLE IF NOT EXISTS user (first_name text,last_name)');
 	})
-	alert("db :"+db);
+//	alert("db :"+db);
+	//Show begin
+		$rootScope.list = [];
+	 db.transaction(function(tx) {
+	 	tx.executeSql("SELECT * from user", [], function(tx, res) {
+	 	 var len = res.rows.length;
+                 if(len>0){
+                  for (var i = 0; i < len; i++) {
+                  	 $scope.list.push({
+                  	 	first_name: res.rows.item(i).first_name,
+                 		last_name: res.rows.item(i).last_name	
+                  	 });
+                  	  $scope.$apply();
+                  }
+                  
+                 }
+                
+	 	})
+	 })
+ 
+	//Show data end
 	
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
