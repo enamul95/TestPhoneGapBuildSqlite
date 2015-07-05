@@ -28,6 +28,26 @@ angular.module('starter', ['ionic','ngCordova'])
  		alert("inside");
            	tx.executeSql("INSERT INTO user (first_name,last_name) VALUES (?,?)", ["1","Branccc"], function(tx, res) { 
 				alert("Insert Successfully");
+				//Show
+					$rootScope.list = [];
+	 db.transaction(function(tx) {
+	 	tx.executeSql("SELECT * from user", [], function(tx, res) {
+	 	 var len = res.rows.length;
+                 if(len>0){
+                  for (var i = 0; i < len; i++) {
+                  	 $scope.list.push({
+                  	 	first_name: res.rows.item(i).first_name,
+                 		last_name: res.rows.item(i).last_name	
+                  	 });
+                  	  $scope.$apply();
+                  }
+                  
+                 }
+                
+	 	})
+	 })
+ 
+				//End Show
 			});
          }, function(e) {
        alert("Error");
