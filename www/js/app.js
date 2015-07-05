@@ -33,24 +33,7 @@ angular.module('starter', ['ionic','ngCordova'])
        alert("Error");
     });
     
-    			$rootScope.list = [];
-	 db.transaction(function(tx) {
-	 	tx.executeSql("SELECT * from user;", [], function(tx, res) {
-	 	 var len = res.rows.length;
-                 if(len>0){
-                  for (var i = 0; i < len; i++) {
-                  	 $scope.list.push({
-                  	 	first_name: res.rows.item(i).first_name,
-                 		last_name: res.rows.item(i).last_name	
-                  	 });
-                  	  $scope.$apply();
-                  }
-                  
-                 }
-                
-	 	})
-	 })
- 
+    		
  }
 
 })
