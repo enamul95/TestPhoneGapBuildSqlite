@@ -1,1 +1,7 @@
 /* Empty. Add your own CSS if you like */
+.odd {
+       background-color: #FFF;
+  }
+ .even {
+     background-color: #d8ebf6;
+	 }
