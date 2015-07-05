@@ -17,6 +17,28 @@ angular.module('starter', ['ionic','ngCordova'])
     $urlRouterProvider.otherwise("/registration");
 })
 .controller('RegistrationClt', function($scope, $state, $rootScope,$ionicLoading,$ionicPopup, $timeout,$cordovaSQLite) {
+ 	//Show begin
+		$rootScope.list = [];
+	 db.transaction(function(tx) {
+	 	tx.executeSql("SELECT * from user", [], function(tx, res) {
+	 	 var len = res.rows.length;
+                 if(len>0){
+                  for (var i = 0; i < len; i++) {
+                  	 $scope.list.push({
+                  	 	first_name: res.rows.item(i).first_name,
+                 		last_name: res.rows.item(i).last_name	
+                  	 });
+                  	  $scope.$apply();
+                  }
+                  
+                 }
+                
+	 	})
+	 })
+ 
+	//Show data end
+ 
+ 
  $scope.submit = function(reg) {
 	//alert(reg.first);
 //	alert(reg.last);
@@ -66,30 +88,13 @@ angular.module('starter', ['ionic','ngCordova'])
 	
 	db = window.sqlitePlugin.openDatabase({name: "DB"});
 	
+	
+	
 	db.transaction(function(tx) {
 	 tx.executeSql('CREATE TABLE IF NOT EXISTS user (first_name text,last_name)');
 	})
 //	alert("db :"+db);
-	//Show begin
-		$rootScope.list = [];
-	 db.transaction(function(tx) {
-	 	tx.executeSql("SELECT * from user", [], function(tx, res) {
-	 	 var len = res.rows.length;
-                 if(len>0){
-                  for (var i = 0; i < len; i++) {
-                  	 $scope.list.push({
-                  	 	first_name: res.rows.item(i).first_name,
-                 		last_name: res.rows.item(i).last_name	
-                  	 });
-                  	  $scope.$apply();
-                  }
-                  
-                 }
-                
-	 	})
-	 })
- 
-	//Show data end
+
 	
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
