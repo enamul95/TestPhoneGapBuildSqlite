@@ -30,7 +30,7 @@ angular.module('starter', ['ionic','ngCordova'])
 				alert("Insert Successfully");
 			});
          }, function(e) {
-        console.log("ERROR:");
+       alert("Error");
     });
  
  }
