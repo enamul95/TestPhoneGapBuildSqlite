@@ -38,7 +38,7 @@ $ionicPopup.alert({
 
  
  db.transaction(function(tx) {  
- 		alert("inside");
+ 		//alert("inside");
            	tx.executeSql("INSERT INTO user (first_name,last_name) VALUES (?,?)", [reg.first,reg.last], function(tx, res) { 
 				alert("Insert Successfully");
 				//Show
